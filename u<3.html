@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greetings</title>
+    <style>
+        body {
+            background-color: pink;
+        }
+        
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        #heart {
+            width: 400px;
+            height: 400px;
+            background-image: url('heart.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-name: heartbeat;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+    </style>
+    <script>
+        function typeMessage(message) {
+            var messageContainer = document.getElementById("message");
+            var characters = message.split("");
+            var i = 0;
+            
+            var interval = setInterval(function() {
+                if (i < characters.length) {
+                    messageContainer.innerHTML += characters[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 50);
+        }
+        
+        function checkName(event) {
+            if (event.keyCode === 13) {
+                var name = document.getElementById("name").value;
+                var message = document.getElementById("message");
+                
+                if (name.toLowerCase() === "nazanin") {
+                    typeMessage("Yeah, I know who you are. You are the most beautiful girl I've ever seen, and I'm so lucky to have you in my life. I know I'm a mess and have no idea why someone like you loves someone like me, but hey, no matter what happens, I'm not going anywhere. I only love you, and I will love you for the rest of my life.  eshqemani<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<333333333333333");
+                } else {
+                    message.innerHTML = "Sorry, you're not my girl.";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="heart"></div>
+    <label for="name">What's your name?</label>
+    <input type="text" id="name" name="name" onkeydown="checkName(event)">
+    <p id="message"></p>
+
+    <script>
+        window.onload = function() {
+            document.getElementById("heart").style.display = "block";
+        }
+    </script>
+</body>
+</html>
